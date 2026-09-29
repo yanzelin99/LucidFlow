@@ -1,111 +1,60 @@
 <h1 align="center">LucidFlow</h1>
 
-<p align="center">别猜，先问 —— 让 AI 先澄清、后执行的请求处理流程。</p>
+<p align="center">Don't guess, ask first — a request-handling flow that forces AI to clarify before executing.</p>
 
 <p align="center">
   <a href="https://github.com/yanzelin99/LucidFlow/releases/tag/v1.0.0"><img src="https://img.shields.io/github/v/release/yanzelin99/LucidFlow" alt="release" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/yanzelin99/LucidFlow" alt="license" /></a>
 </p>
 
-<p align="center"><a href="./README.md">简体中文</a> | <a href="./README_EN.md">English</a></p>
+<p align="center">English | <a href="./README_ZH-CN.md">简体中文</a></p>
 
-本仓 `AGENTS.md` 是可直接使用的优化版（约 841 tokens）；下方代码块内是流程导向的完整版规则原文。
+`AGENTS.md` is the drop-in optimized rule (≈841 tokens, Chinese canonical); `AGENTS_EN.md` is the English translation.
 
-## 为什么要这样做
+## Why
 
-AI 出错，多半不是不会，而是在信息不全时“猜”了：脑补一个默认值、赌一个概率最高的理解、私下先试错再问。
-猜对了省一句问话，猜错了浪费一轮大执行——还可能改错状态、烧掉大量 Token。
-这套流程把“问”前置：意图不明时强制停下来，一次性问全，再带着无歧义的理解去执行。
+When AI fails, it is usually not incompetence — it is guessing under incomplete
+information: inventing a default value, betting on the most likely interpretation,
+trying execution privately and asking only after something breaks.
+A correct guess saves one question; a wrong guess wastes a full execution round —
+and may mutate state or burn huge amounts of tokens.
+This flow forces the "asking" up front: stop when intent is unclear, ask everything
+at once, then execute with an unambiguous understanding.
 
-## 没这样做之前遇到的问题
+## Before: what went wrong without it
 
-- **盲猜参数**：对象、数量、格式没说，AI 自行脑补默认值直接开干，结果不对版。
-- **先斩后奏**：私下试执行，出问题再回来确认，状态已被改动，只能返工。
-- **概率盲赌**：一句话两种理解，AI 单方面选“最像”的那个，答非所问。
-- **无效耗损**：目标都没指明，先全盘搜索探查，Token 和时间双黑洞。
-- **碎片追问**：问一句答一句，来回五六轮，要素还没凑齐。
+- **Blind guessing**: object, quantity or format unstated → AI invents defaults and builds the wrong thing.
+- **Act-first-ask-later**: private trial execution, confirmation only after breakage; state already mutated, rework required.
+- **Probability gambling**: one sentence, two readings → AI unilaterally picks the "most likely" one and answers the wrong question.
+- **Wasteful burn**: target not even specified, yet a full-repo search runs first — a token and time black hole.
+- **Fragmented interrogation**: one question per round, five rounds later the picture is still incomplete.
 
-## 这样做之后解决的问题
+## After: what it fixes
 
-- **一次问全**：澄清阶段一次性列出所有待确认问题，答完即锁定，无碎片追问。
-- **有疑就问**：清晰度判定存疑一律按“必须澄清”，不再赌概率。
-- **熔断止损**：任一步骤将触犯禁令就立即停下转澄清，不带着歧义执行。
-- **可复核可追溯**：答复后回步骤 2 复核，满足“可直接执行”才算锁定。
-- **省 Token**：优化版 841 tokens（原 1151），每次请求都带得起。
+- **Ask everything at once**: the clarification phase lists ALL pending questions; one answered round locks the picture. No fragmented follow-ups.
+- **Doubt means ask**: the clarity check routes anything doubtful to "must clarify" — no more gambling on probabilities.
+- **Circuit breaker**: about to violate a prohibition at any step → stop immediately, go clarify. Ambiguity never reaches execution.
+- **Reviewable and traceable**: replies go back through the Step 2 re-check; only a state satisfying "direct execution" counts as locked.
+- **Token-cheap**: optimized version ≈841 tokens (down from 1151), affordable on every request.
 
-## 规则流程导向(该流程仅为规则流程介绍，请勿复制使用）
+## The full rule (flow-oriented canonical text, Chinese)
 
-```text
-[用户请求输入]
-  │
-  ├─► [例外判定] 是否为意图明确的纯知识问答 / 闲聊？
-  │     │
-  │     ├─► 是（无执行风险） ───► [直接回答输出]（流程结束）
-  │     │
-  │     └─► 否（涉及状态改变/工具执行/外部操作）
-  │           │
-  │           ▼
-  │   【步骤 1：意图解析】（结构化提取五要素）
-  │     ├─ 目标：用户想达成什么结果
-  │     ├─ 对象：操作或处理的具体目标
-  │     ├─ 参数：数量、格式、范围、时间等
-  │     ├─ 环境：平台、工具、上下文条件
-  │     └─ 约束：限制条件与禁止事项
-  │           │
-  │           ▼
-  │   【步骤 2：清晰度判定】（信息完备性分流点）
-  │     │
-  │     ├─► [分支 A：判定为可直接执行]
-  │     │     │
-  │     │     ├─ 满足充分条件（须同时成立）：
-  │     │     │    ├─ 五要素齐全（或可从上下文直接推断）
-  │     │     │    ├─ 仅存在一种合理解释
-  │     │     │    └─ 无歧义表述、无指代不明
-  │     │     │
-  │     │     └─► 直通 ──► 【步骤 4：直接执行任务】 ──► [交付结果]
-  │     │
-  │     └─► [分支 B：判定为必须澄清]
-  │           │
-  │           ├─ 触发判定条件（命中任一即触发）：
-  │           │    ├─ 存在两种或以上合理解释
-  │           │    ├─ 关键参数缺失（对象/数量/格式未指定）
-  │           │    ├─ 指代不明（如"那个文件"无法直接定位用户所指）
-  │           │    └─ 操作有不可逆风险但范围未界定
-  │           │
-  │           ▼
-  │   【步骤 3：澄清提问】（前置控熵，严格交互纪律）
-  │     │
-  │     ├─ 提问执行原则：
-  │     │    ├─ 一次性全量列出所有待确认问题（严禁碎片化追问）
-  │     │    ├─ 问题简短、具体、可直接回答
-  │     │    └─ 多解时给出编号选项（如：选项1 / 选项2）供选择
-  │     │
-  │     ├─ 防御性约束：
-  │     │    └─ 本阶段只提问，绝对不执行任务，不输出无关内容
-  │     │
-  │     ▼
-  │   [等待用户明确答复与确认]
-  │     │
-  │     └─► 用户反馈补充要素 / 选中选项
-  │           │
-  │           ▼
-  │   【步骤 4：确认后执行】（闭环落地）
-  │     │
-  │     └─► 基于已锁定的无歧义理解执行任务 ──► [交付结果]（流程结束）
+See the code block in [README_ZH-CN.md](./README_ZH-CN.md), or use [AGENTS_EN.md](./AGENTS_EN.md) directly.
 
+## Quick start
 
-─────────────────────────────────────────────────────────────
-沿途严禁行为（全分支熔断机制）
-─────────────────────────────────────────────────────────────
-  ✖ [禁止盲猜] 严禁自行脑补缺失参数的默认值并直接执行
-  ✖ [禁止先斩后奏] 严禁“先私下尝试执行，出问题再回来确认”
-  ✖ [禁止概率盲赌] 严禁在存在多解时，单方面选自认为概率最高的一项执行
-  ✖ [禁止无效耗损] 严禁在目标未指明时盲目全盘搜索探查（杜绝Token与时间黑洞）
+```bash
+# Copy the rule as your global rule (Chinese canonical)
+cp AGENTS.md ~/.config/opencode/AGENTS.md
 ```
 
-## 快速开始
-复制下文发送给AI工具：
+## Contents
 
-```text
-请帮我部署这个项目到的全局规则，如果全局规则已有内容请向用户询问替换事项https://github.com/yanzelin99/LucidFlow/
-```
+- `AGENTS.md` — rule text, Chinese canonical (≈841 tokens / cl100k)
+- `AGENTS_EN.md` — rule text, English translation
+- `LICENSE` — MIT
+
+## Why "Ask-First"?
+
+AI errors are rarely stupidity; they are guesses. Asking first resolves the most
+ambiguity at the lowest cost.
