@@ -40,15 +40,12 @@ See the code block in [README.md](./README.md), or use [AGENTS_EN.md](./AGENTS_E
 ```bash
 # Copy the rule as your global rule (Chinese canonical)
 cp AGENTS.md ~/.config/opencode/AGENTS.md
-# Or drop the IDE packs into your project: .cursor/rules/, .windsurf/rules/, snippets/
 ```
 
 ## Contents
 
 - `AGENTS.md` — rule text, Chinese canonical (≈841 tokens / cl100k)
 - `AGENTS_EN.md` — rule text, English translation
-- `examples/` — Bad Case vs Good Case dialogues
-- `.cursor/rules/`, `.windsurf/rules/`, `snippets/` — drop-in IDE packs
 - `LICENSE` — MIT
 
 ## Why "Ask-First"?

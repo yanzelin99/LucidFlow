@@ -2,7 +2,7 @@
 
 > 一套让 AI“先澄清、后执行”的请求处理流程：把最便宜的澄清放在最前面，杜绝最贵的返工。
 > 本仓 `AGENTS.md` 是可直接使用的优化版（约 841 tokens）；下方代码块内是流程导向的完整版规则原文。
-> English: [README_EN.md](./README_EN.md) · 示例：[Bad Case](./examples/bad-case.md) vs [Good Case](./examples/good-case.md) · IDE 包：`.cursor/rules/`、`.windsurf/rules/`、`snippets/`
+> English: [README_EN.md](./README_EN.md)
 
 ## 为什么要这样做
 
