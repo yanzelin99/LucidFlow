@@ -1,9 +1,15 @@
-# Ask-First Workflow · Don't Guess, Ask First
+<h1 align="center">LucidFlow</h1>
 
-> A request-handling flow that forces AI to "clarify first, execute later":
-> put the cheapest clarification up front to eliminate the most expensive rework.
-> `AGENTS.md` is the drop-in optimized rule (≈841 tokens, Chinese canonical);
-> `AGENTS_EN.md` is the English translation. 中文版见 [README.md](./README.md).
+<p align="center">Don't guess, ask first — a request-handling flow that forces AI to clarify before executing.</p>
+
+<p align="center">
+  <a href="https://github.com/yanzelin99/LucidFlow/releases/tag/v1.0.0"><img src="https://img.shields.io/github/v/release/yanzelin99/LucidFlow" alt="release" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/yanzelin99/LucidFlow" alt="license" /></a>
+</p>
+
+<p align="center"><a href="./README.md">简体中文</a> | <a href="./README_EN.md">English</a></p>
+
+`AGENTS.md` is the drop-in optimized rule (≈841 tokens, Chinese canonical); `AGENTS_EN.md` is the English translation.
 
 ## Why
 

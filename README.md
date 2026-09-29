@@ -1,8 +1,15 @@
-# Ask-First Workflow · 别猜，先问
+<h1 align="center">LucidFlow</h1>
 
-> 一套让 AI“先澄清、后执行”的请求处理流程：把最便宜的澄清放在最前面，杜绝最贵的返工。
-> 本仓 `AGENTS.md` 是可直接使用的优化版（约 841 tokens）；下方代码块内是流程导向的完整版规则原文。
-> English: [README_EN.md](./README_EN.md)
+<p align="center">别猜，先问 —— 让 AI 先澄清、后执行的请求处理流程。</p>
+
+<p align="center">
+  <a href="https://github.com/yanzelin99/LucidFlow/releases/tag/v1.0.0"><img src="https://img.shields.io/github/v/release/yanzelin99/LucidFlow" alt="release" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/yanzelin99/LucidFlow" alt="license" /></a>
+</p>
+
+<p align="center"><a href="./README.md">简体中文</a> | <a href="./README_EN.md">English</a></p>
+
+本仓 `AGENTS.md` 是可直接使用的优化版（约 841 tokens）；下方代码块内是流程导向的完整版规则原文。
 
 ## 为什么要这样做
 
