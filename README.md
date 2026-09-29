@@ -9,7 +9,7 @@
 
 <p align="center"><a href="./README.md">简体中文</a> | <a href="./README_EN.md">English</a></p>
 
-本仓 `AGENTS.md` 是可直接使用的优化版（约 841 tokens）；下方代码块内是流程导向的完整版规则原文。
+本仓 `AGENTS.md` 是可直接使用的优化版（约 841 tokens）
 
 ## 为什么要这样做
 
