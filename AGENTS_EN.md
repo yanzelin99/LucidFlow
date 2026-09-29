@@ -39,6 +39,3 @@ Execute on the locked (satisfying A) unambiguous understanding → deliver, done
 - No act-first-ask-later: trying execution privately, coming back only when something breaks
 - No probability gambling: unilaterally picking the seemingly most likely interpretation when several exist
 - No wasteful burn: blindly searching everything when the target is unspecified (token / time black hole)
-
----
-Note: token figures quoted in this repo (≈841 tokens) were measured on the Chinese canonical version; the English translation will tokenize differently.
