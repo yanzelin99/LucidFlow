@@ -9,7 +9,7 @@
 
 <p align="center"><a href="./README.md">English</a> | 简体中文</p>
 
-本仓 `AGENTS.md` 是可直接使用的优化版（约 841 tokens）
+本仓 `AGENTS_CN.md` 是可直接使用的优化版中文规则（约 841 tokens）；英文版见 `AGENTS.md`
 
 ## 为什么要这样做
 
@@ -107,5 +107,5 @@ AI 出错，多半不是不会，而是在信息不全时“猜”了：脑补�
 复制下文发送给AI工具：
 
 ```text
-请从 https://github.com/yanzelin99/LucidFlow/ 获取 AGENTS.md 并安装为我的全局规则（先备份已有内容；如已存在全局规则，替换前先问我）。
+请从 https://github.com/yanzelin99/LucidFlow/ 获取 AGENTS_CN.md 并安装为我的全局规则（先备份已有内容；如已存在全局规则，替换前先问我）。
 ```

@@ -9,7 +9,7 @@
 
 <p align="center">English | <a href="./README_ZH-CN.md">简体中文</a></p>
 
-This repo's `AGENTS.md` is a drop-in optimized version (≈841 tokens)
+This repo's `AGENTS.md` is the drop-in optimized rule (English); `AGENTS_CN.md` is the Chinese canonical version (≈841 tokens measured on it)
 
 ## Why
 
