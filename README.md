@@ -107,5 +107,5 @@ Prohibited behaviors (circuit breaker on all branches)
 Copy the text below and send it to your AI tool:
 
 ```text
-Please deploy this project's global rules for me. If global rules already exist, ask me about replacing them. https://github.com/yanzelin99/LucidFlow/
+Please fetch AGENTS.md from https://github.com/yanzelin99/LucidFlow/ and install it as my global agent rules (back up existing ones first; if anything already exists there, ask me before replacing).
 ```

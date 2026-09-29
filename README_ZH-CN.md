@@ -107,5 +107,5 @@ AI 出错，多半不是不会，而是在信息不全时“猜”了：脑补�
 复制下文发送给AI工具：
 
 ```text
-请帮我部署这个项目到的全局规则，如果全局规则已有内容请向用户询问替换事项https://github.com/yanzelin99/LucidFlow/
+请从 https://github.com/yanzelin99/LucidFlow/ 获取 AGENTS.md 并安装为我的全局规则（先备份已有内容；如已存在全局规则，替换前先问我）。
 ```
